@@ -1,0 +1,880 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass heb-article
+\use_default_options true
+\maintain_unincluded_children false
+\language hebrew
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 1cm
+\bottommargin 2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+מבוא ללמידה עמוקה - תרגיל
+\family roman
+\series medium
+\shape up
+\size largest
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+3
+\family roman
+\series medium
+\shape up
+\size largest
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\end_layout
+
+\begin_layout Author
+עידן רפאלי ואנאל בן-סימון
+\end_layout
+
+\begin_layout Section*
+חלק תכנותי
+\end_layout
+
+\begin_layout Enumerate
+סקרנו את קוד ה-
+\begin_inset Formula $\text{Auto-Encoder}$
+\end_inset
+
+, אימנו אותו והשתמשנו במודל המאומן במשימות הבאות.
+\end_layout
+
+\begin_layout Enumerate
+לאחר שניסינו מספר ארכיטקטורות שונות למודל ה-
+\begin_inset Formula $\text{classifier}$
+\end_inset
+
+ לסיווג ספרות ממרחב ה-
+\begin_inset Formula $\text{latent}$
+\end_inset
+
+ של תמונות ה-
+\begin_inset Formula $\text{MNIST}$
+\end_inset
+
+ שנלמד על-ידי ה-
+\begin_inset Formula $\text{AE}$
+\end_inset
+
+, עם קבוצת אימון בגודל של 
+\begin_inset Formula $50$
+\end_inset
+
+ דוגמאות בלבד, קיבלנו שהארכיטקטורה שהשיגה את הדיוק הגבוהה ביותר על קבוצת
+ הולידציה היא הארכיטקטורה המתוארת להלן:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+שכבה ראשונה עם מימד פלט של 
+\begin_inset Formula $128$
+\end_inset
+
+, ואקטיבציית 
+\begin_inset Formula $\text{sigmoid}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+שכבה שניה עם מימד פלט של 
+\begin_inset Formula $512$
+\end_inset
+
+, ואקטיבציית 
+\begin_inset Formula $\text{sigmoid}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+שכבה שלישית עם מימד פלט של 
+\begin_inset Formula $10$
+\end_inset
+
+, ואקטיבציית 
+\begin_inset Formula $\text{softmax}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ניתן לראות את הארכיטקטורות של כל המודלים שניסינו בקובץ הקוד שהגשנו.
+ המודל הטוב ביותר השיג אחוז דיוז של 
+\begin_inset Formula $0.745$
+\end_inset
+
+ באפוק האחרון.
+ אותו מודל השיג אחוז דיוק של 
+\begin_inset Formula $0.607$
+\end_inset
+
+ כאשר הוא אומן לאחר שהוא הורכב על ה-
+\begin_inset Formula $\text{encoder}$
+\end_inset
+
+ )מספר האפוקים הכולל בשני האימונים הוא 
+\begin_inset Formula $200$
+\end_inset
+
+(.
+ להלן גרף המתאר את הדיוק של המודל הטוב ביותר על פני ריצת האפוקים, בשני המקרים:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename q2.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+לפי הגרף, ניתן לראות כי עדיף לאמן את מודל ה-
+\begin_inset Formula $\text{classifier}$
+\end_inset
+
+ לבדו, מבלי להרכיב אותו על ה-
+\begin_inset Formula $\text{encoder}$
+\end_inset
+
+ מכיוון שהוא לבדו מצליח להשיג אחוזי דיוק גבוהים יותר )הבחנו בתופעה דומה
+ גם במודלים האחרים שבדקנו(.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+להלן מספר דוגמאות לדגימות שנוצרו על-ידי מודל 
+\begin_inset Formula $\text{GAN}$
+\end_inset
+
+ שאימנו )לאחר שהשתמשנו ב-
+\begin_inset Formula $\text{decoder}$
+\end_inset
+
+ כדי להמיר את הדגימות שנוצרו במרחב ה-
+\begin_inset Formula $\text{latent}$
+\end_inset
+
+ למרחב התמונות:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename q4_5.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+הדגימות נראות לרוב כמו ספרות אמיתיות, ולכן אנו מסיקים שמודל ה-
+\begin_inset Formula $\text{GAN}$
+\end_inset
+
+ למד את מרחב ה-
+\begin_inset Formula $\text{latent}$
+\end_inset
+
+ של תמונות הספרות בצורה טובה יחסית.
+\end_layout
+
+\begin_layout Standard
+לאחר שביצענו את משימת האינטרפולציה בין 
+\begin_inset Formula $2$
+\end_inset
+
+ תמונות, כאשר פעם אחת דגמנו 
+\begin_inset Formula $2$
+\end_inset
+
+ תמונות ממרחב ה-
+\begin_inset Formula $\text{latent}$
+\end_inset
+
+ על-ידי הגנרטור, ובפעם השניה לקחנו 
+\begin_inset Formula $2$
+\end_inset
+
+ תמונות אמיתיות מקודדות במרחב ה-
+\begin_inset Formula $\text{latent}$
+\end_inset
+
+, קיבלנו את התוצאות הבאות:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Figure_3.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+השורה הראשונה היא אינטרפולציה בין 
+\begin_inset Formula $2$
+\end_inset
+
+ תמונות שנדגמו על-ידי הגנרטור, והשורה השניה היא אינטרפולציה בין 
+\begin_inset Formula $2$
+\end_inset
+
+ תמונות אמיתיות.
+ לדעתנו התוצאות הטובות יותר התקבלו באינטרפולציה בין 
+\begin_inset Formula $2$
+\end_inset
+
+ תמונות שהתבצעו על-ידי הגנרטור.
+ ניתן לראות בשורה הראשונה שלאורך כל האינטרפולציה, כמעט כל תמונה נראית קרובה
+ יחסית לספרה אמיתית כלשהי )מתחילים מספרה שדומה ל-
+\begin_inset Formula $8$
+\end_inset
+
+, מתישהו עוברים לספרה שנראית דומה יותר ל-
+\begin_inset Formula $9$
+\end_inset
+
+ ולבסוף מסיימים בספרה שנראית כמו 
+\begin_inset Formula $7$
+\end_inset
+
+(.
+ לעומת זאת, בשורה השניה, התמונות באמצע תהליך האינטרפולציה לא נראות ברורות
+ כל כך לדעתנו, ונראות כמו הכלאה בין 
+\begin_inset Formula $2$
+\end_inset
+
+ ספרות אולי, אך לא דומות לאף ספרה ספציפית.
+ לכן אנו מסיקים שאיטרפולציה במרחב ה-
+\begin_inset Formula $\text{latent}$
+\end_inset
+
+ הנוצר על-ידי הגנרטור טובה יותר מאינטרפולציה במרחב ה-
+\begin_inset Formula $\text{AE}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+בחרנו לאמן רשת מסוג 
+\begin_inset Formula $\text{Conditional GAN}$
+\end_inset
+
+ לצורך המשימה של ייצור תמונה לפי ספרה ספציפית שמתקבלת כקלט מהמשתמש.
+ בהינתן ספרה כלשהי 
+\begin_inset Formula $0\leq d\leq9$
+\end_inset
+
+ שתמונה שלה אנו מעוניינים לייצר על-ידי הגנרטור, נאמן גנרטור שמקבל כקלט וקטור
+ שנדגם מהתפלגות גאוסיינית, ואליו נשרשר וקטור בגודל 
+\begin_inset Formula $10$
+\end_inset
+
+ שהוא ייצוג 
+\begin_inset Formula $\text{one-hot}$
+\end_inset
+
+ של הספרה )כלומר מכיל 
+\begin_inset Formula $1$
+\end_inset
+
+ בקורדינטה ה-
+\begin_inset Formula $d$
+\end_inset
+
+ ו-
+\begin_inset Formula $0$
+\end_inset
+
+ בשאר הקורדינטות(.
+ בתהליך האימון, הדיסקרימינטור יקבל תמונות מקודדות על-ידי הגנרטור, שאליהן
+ ישורשר גם כן וקטורים 
+\begin_inset Formula $\text{one-hot}$
+\end_inset
+
+ שהגנרטור השתמש בהן לייצור הקודים, ובנוסף הדיסקרימינטור נקבל קודים של תמונות
+ אמיתיות שנוצרו על-ידי ה-
+\begin_inset Formula $\text{AE}$
+\end_inset
+
+, שאליהן משורשרים ייצוגי 
+\begin_inset Formula $\text{one-hot}$
+\end_inset
+
+ של הספרות המקוריות שהיו בתמונות מהן הקודים נוצרו )התיוגים מהדאטא של ה-
+\begin_inset Formula $\text{MNIST}$
+\end_inset
+
+(.
+\begin_inset Newline newline
+\end_inset
+
+לאחר שאימנו מודל 
+\begin_inset Formula $\text{Conditional GAN}$
+\end_inset
+
+ כמפורט לעיל, וביקשנו ממנו לייצר את כל אחת מהספרות מ-
+\begin_inset Formula $0$
+\end_inset
+
+ עד 
+\begin_inset Formula $9$
+\end_inset
+
+, קיבלנו את התוצאה הבאה:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename q4_4.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+התוצאות לדעתנו טובות, ודומות מאוד לספרות, ולכן אנו מסיקים שהמודל למד את
+ ההתפלגות המותנית בצורה טובה.
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+שאלות תאורטיות
+\end_layout
+
+\begin_layout Enumerate
+נשתמש ברשת דומה ל-
+\begin_inset Formula $\text{BERT}$
+\end_inset
+
+ כדי לחקות התנהגות של שכבת קונבולוציה בצורה הבאה: אם למשל נרצה ללמוד פילטר
+ בגודל 
+\begin_inset Formula $k\times s$
+\end_inset
+
+, נחתוך את כל חלונות מתמונת הקלט בגודל 
+\begin_inset Formula $k\times s$
+\end_inset
+
+ סביב כל אחד מהפיקסלים, כך שיווצרו לנו 
+\begin_inset Formula $n$
+\end_inset
+
+ תמונות בגודל 
+\begin_inset Formula $k\times s$
+\end_inset
+
+, כאשר 
+\begin_inset Formula $n$
+\end_inset
+
+ זה מספר הפיקסלים בתמונת הקלט.
+ כל חלון בגודל 
+\begin_inset Formula $k\times s$
+\end_inset
+
+ ניתן לרשת במקביל.
+ רשת 
+\begin_inset Formula $\text{BERT}$
+\end_inset
+
+ תלמד את הקשרים והקורלציה בין כל זוג פיקסלים בכל אחד מהחלונות, וכך הרשת
+ תלמד על קורלציה מקומית בכל חלון של התמונה, ותצליח להשיג התנהגות דומה לזו
+ שמשיגה שכבת קונבולוציה.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+כדי שרשת דומה ל-
+\begin_inset Formula $\text{BERT}$
+\end_inset
+
+ תוכל לחקות התנהגות של שכבת 
+\begin_inset Formula $\text{FC}$
+\end_inset
+
+ )או רשת 
+\begin_inset Formula $\text{MLP}$
+\end_inset
+
+ שלמה(, ניתן לרשת את הקלט בשלמותו.
+ הרשת תלמד את הקשרים והקורלציה בין כל זוג פיצ'רים )למשל פיקסלים בתמונות(,
+ וזאת בדומה להתנהגות של שכבת 
+\begin_inset Formula $\text{FC}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+רשת 
+\begin_inset Formula $\text{GAN}$
+\end_inset
+
+ רגילה:
+\series default
+ נשים לב כי, גם אם יש לנו זוגות תואמים של דגימות ממחלקות 
+\begin_inset Formula $A$
+\end_inset
+
+ ו-
+\begin_inset Formula $B$
+\end_inset
+
+, ברשת זו אין קשר ישיר בין דגימה ממחלקה 
+\begin_inset Formula $A$
+\end_inset
+
+ לדגימה המתאימה לה במחלקה 
+\begin_inset Formula $B$
+\end_inset
+
+, מכיוון שהגנרטור מקבל רק דגימה של מחלקה 
+\begin_inset Formula $A$
+\end_inset
+
+, ללא דגימה תואמת ממחלקה 
+\begin_inset Formula $B$
+\end_inset
+
+, ואמורה לייצר תמונה כלשהי ממחלקה 
+\begin_inset Formula $B$
+\end_inset
+
+ שאינה דומה בהכרח לדגימה התואמת.
+ בנוסף הדיסקרימנטור מקבל בכל פעם דגימה ממחלקה 
+\begin_inset Formula $B$
+\end_inset
+
+, או פלט של הגנרטור ואמור להפריד ביניהם )וגם כאן לא מתבצע קישור לדגימה התואמת
+ ממחלקה 
+\begin_inset Formula $A$
+\end_inset
+
+(.
+ לכן אסטרטגיה זו לא תרוויח משדרוג ה-
+\begin_inset Formula $\text{dataset}$
+\end_inset
+
+ המתואר ב-
+\begin_inset Formula $\text{iii}$
+\end_inset
+
+ ל-
+\begin_inset Formula $\text{ii}$
+\end_inset
+
+ )וכמובן שגם לא מהשדרוג ל-
+\begin_inset Formula $\text{i}$
+\end_inset
+
+(.
+ לכן אנחנו לא מצפים שהרשת תצליח על אף אחד משלושת ה-
+\begin_inset Formula $\text{datasets}$
+\end_inset
+
+, שכן, עבור דגימה מ-
+\begin_inset Formula $A$
+\end_inset
+
+ היא יכולה לצייר דגימה מ-
+\begin_inset Formula $B$
+\end_inset
+
+ שלא תואמת כלל לדגימה מ-
+\begin_inset Formula $A$
+\end_inset
+
+, וייתכן אף שהרשת תכנס למצב של 
+\begin_inset Formula $\text{mode collapse}$
+\end_inset
+
+ ותייצר את אותה דגימה מ-
+\begin_inset Formula $B$
+\end_inset
+
+ לכל קלט דגימה מ-
+\begin_inset Formula $A$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+רשת 
+\begin_inset Formula $\text{GAN}$
+\end_inset
+
+ מעגלית: 
+\series default
+עבור 
+\begin_inset Formula $\text{dataset}$
+\end_inset
+
+ מספר 
+\begin_inset Formula $\text{iii}$
+\end_inset
+
+, כאשר אין לנו זוגות תואמים מ-
+\begin_inset Formula $A$
+\end_inset
+
+ ו-
+\begin_inset Formula $B$
+\end_inset
+
+, אנחנו מצפים שיהיו תוצאות לא טובות כי בדומה לרשת 
+\begin_inset Formula $\text{GAN}$
+\end_inset
+
+ רגילה, אין דרך לכוון לדגימה הרצויה מ-
+\begin_inset Formula $B$
+\end_inset
+
+ עבור דגימה מ-
+\begin_inset Formula $A$
+\end_inset
+
+.
+ כן ראוי לציין שייתכן בכל זאת שהתוצאות יהיו מעט יותר טובות לעומת רשת 
+\begin_inset Formula $\text{GAN}$
+\end_inset
+
+ רגילה עבור 
+\begin_inset Formula $\text{iii}$
+\end_inset
+
+, כי לדעתנו הסיכוי שהרשת תכנס ל-
+\begin_inset Formula $\text{mode collapse}$
+\end_inset
+
+ במקרה זה נמוכה יותר, בגלל ה-
+\begin_inset Formula $\text{loss}$
+\end_inset
+
+ שדורש שחזור של המקור, אך ייתכן שהדגימה מ-
+\begin_inset Formula $B$
+\end_inset
+
+ שממנה הגנרטור השני משחזר את הדגימה המקורית מ-
+\begin_inset Formula $A$
+\end_inset
+
+ לא תהיה תואמת לה.
+ אסטרטגיה זו תרוויח לדעתנו מהשדרוג ל-
+\begin_inset Formula $\text{dataset}$
+\end_inset
+
+ מספר 
+\begin_inset Formula $\text{ii}$
+\end_inset
+
+, כי ברגע שיש לנו זוגות תואמים, נוכל בכל פעם לשלוח דגימה מ-
+\begin_inset Formula $A$
+\end_inset
+
+ לגנרטור הראשון ואת הדגימה התואמת לה מ-
+\begin_inset Formula $B$
+\end_inset
+
+ נשלח לגנרטור השני, וכך, על-ידי מזעור ה-
+\begin_inset Formula $\text{loss}$
+\end_inset
+
+, נגרום לגרנטור הראשון לייצר לכל דגימה ב-
+\begin_inset Formula $A$
+\end_inset
+
+ דגימה תואמת מ-
+\begin_inset Formula $B$
+\end_inset
+
+.
+ לדעתנו אסטרטגיה זו לא תרוויח בצורה משמעותית משדרוג מ-
+\begin_inset Formula $\text{dataset}$
+\end_inset
+
+ מספר 
+\begin_inset Formula $\text{ii}$
+\end_inset
+
+ ל-
+\begin_inset Formula $\text{dataset}$
+\end_inset
+
+ למספר 
+\begin_inset Formula $\text{i}$
+\end_inset
+
+, וזאת מכיוון שהקשר בין זוגות תואמים לא מתבטא בצורה ישירה במהלך האימון,
+ אלא רק בצורה עקיפה דרך ה-
+\begin_inset Formula $\text{loss}$
+\end_inset
+
+.
+ כלומר, עבור זוג תואם של דגימות מ-
+\begin_inset Formula $A$
+\end_inset
+
+ ו-
+\begin_inset Formula $B$
+\end_inset
+
+, הגנרטור הראשון יקבל את הדגימה מ-
+\begin_inset Formula $A$
+\end_inset
+
+ וייצר דגימה כלשהי מ-
+\begin_inset Formula $B$
+\end_inset
+
+, ללא קשר לדגימה התואמת, וכנ
+\begin_inset Quotes erd
+\end_inset
+
+ל באופן הפוך על הגנרטור השני שיקבל את הדגימה מ-
+\begin_inset Formula $B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+רשת 
+\begin_inset Formula $\text{GAN}$
+\end_inset
+
+ מותנית:
+\series default
+ עבור 
+\begin_inset Formula $\text{dataset}$
+\end_inset
+
+ מספר 
+\begin_inset Formula $\text{iii}$
+\end_inset
+
+, כאשר אין לנו זוגות תואמים מ-
+\begin_inset Formula $A$
+\end_inset
+
+ ו-
+\begin_inset Formula $B$
+\end_inset
+
+, אנחנו מצפים שיהיו תוצאות לא טובות, כי בדומה לרשת 
+\begin_inset Formula $\text{GAN}$
+\end_inset
+
+ רגילה, אין דרך לכוון לדגימה הרצויה מ-
+\begin_inset Formula $B$
+\end_inset
+
+ עבור דגימה מ-
+\begin_inset Formula $A$
+\end_inset
+
+.
+ אסטרטגיה זו תרוויח לדעתנו מהשדרוג ל-
+\begin_inset Formula $\text{dataset}$
+\end_inset
+
+ מספר 
+\begin_inset Formula $\text{ii}$
+\end_inset
+
+, ותביא לתוצאות טובות יותר, מכיוון שברגע שיש לנו זוגות תואמים, הדיסקרימנטור
+ בתהליך האימון יוכל לקבל זוגות תואמים, ובכך לגרום לגנרטור לייצר עבור דגימה
+ מ-
+\begin_inset Formula $A$
+\end_inset
+
+ דגימה תומאמת מ-
+\begin_inset Formula $B$
+\end_inset
+
+ כדי שהוא יוכל לבלבל את הדיסקרימנטור.
+ לדעתנו אסטרטגיה זו תרוויח גם משדרוג ל-
+\begin_inset Formula $\text{dataset}$
+\end_inset
+
+ מספר 
+\begin_inset Formula $\text{i}$
+\end_inset
+
+ ותביא לתוצאות טובות אף יותר משימוש ב-
+\begin_inset Formula $\text{ii}$
+\end_inset
+
+, כי כדי שהגנרטור יצליח לבלבל את הדיסקרימנטור, הגנרטור יצטרך לייצר עבור
+ דגימה מ-
+\begin_inset Formula $A$
+\end_inset
+
+, דגימה מ-
+\begin_inset Formula $B$
+\end_inset
+
+ שהיא יותר מפורטת ומדוייקת, וכך על דגימות חדשות מ-
+\begin_inset Formula $A$
+\end_inset
+
+ )שלא בהכרח יש להן דגימה תואמת מ-
+\begin_inset Formula $B$
+\end_inset
+
+(, הנגטור יצליח לייצר דגימה מ-
+\begin_inset Formula $B$
+\end_inset
+
+ שתואמת ל-
+\begin_inset Formula $A$
+\end_inset
+
+ ברמת פירוט גבוהה.
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
